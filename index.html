@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>College Management System</title>
+    <link rel="stylesheet" href="style12.css">
+</head>
+
+<body>
+    <aside class="sidebar" id="sidebar">
+        <div class="brand"><b class="logo">C</b>
+            <div><strong>S.D College Management System</strong><small>Ambala</small></div>
+        </div>
+        <p class="nav-label">MAIN MENU</p>
+        <button class="nav active" data-page="dashboard">▦ &nbsp; Dashboard</button><button class="nav"
+            data-page="students">♙ &nbsp; Students <b id="sideCount">0</b></button><button class="nav"
+            data-page="attendance">✓ &nbsp; Attendance</button><button class="nav" data-page="marks">▤ &nbsp; Marks &
+            Results</button>
+        <div class="sidebar-foot">? &nbsp; Internship project demo</div>
+    </aside>
+    <div class="app">
+        <header><button id="menu">☰</button><span>College Portal　/　<strong id="crumb">Dashboard</strong></span>
+            <div class="admin"><i></i> Admin <b>AD</b></div>
+        </header>
+        <main>
+            <section class="page active" id="page-dashboard">
+                <div class="title-row">
+                    <div>
+                        <p class="eyebrow">OVERVIEW</p>
+                        <h1>College Dashboard</h1>
+                        <p class="muted">Welcome! S.D College Students</p>
+                    </div><span class="date" id="today"></span>
+                </div>
+                <div class="stats">
+                    <article><span>Total Students</span><strong id="total">0</strong><small>Registered in this
+                            demo</small></article>
+                    <article><span>Attendance Entries</span><strong id="attTotal">0</strong><small>Records
+                            marked</small></article>
+                    <article><span>Average Marks</span><strong id="avg">—</strong><small>Across student records</small>
+                    </article>
+                    <article><span>Courses</span><strong id="courses">0</strong><small>Distinct courses</small>
+                    </article>
+                </div>
+                <div class="columns">
+                    <section class="card">
+                        <div class="card-head">
+                            <div>
+                                <h2>Recent Students</h2>
+                                <p>Latest records added to the system.</p>
+                            </div><button class="link" data-go="students">View all →</button>
+                        </div>
+                        <div class="table-wrap">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Student</th>
+                                        <th>Roll Number</th>
+                                        <th>Course</th>
+                                        <th>Marks</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="recent">
+                                    <tr>
+                                        <td colspan="4" class="empty">No students added yet.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                    <section class="card">
+                        <div class="card-head">
+                            <div>
+                                <h2>Quick Actions</h2>
+                                <p>Common tasks</p>
+                            </div>
+                        </div><button class="quick" data-go="students">＋ <span><b>Register Student</b><small>Add a new
+                                    student record</small></span> ›</button><button class="quick" data-go="attendance">✓
+                            <span><b>Mark Attendance</b><small>Record daily attendance</small></span> ›</button><button
+                            class="quick" data-go="marks">▤ <span><b>View Results</b><small>Check marks and
+                                    percentage</small></span> ›</button>
+                    </section>
+                </div>
+                <p class="note"> Only for internship report </p>
+            </section>
+            <section class="page" id="page-students">
+                <div class="title-row">
+                    <div>
+                        <p class="eyebrow">STUDENT DIRECTORY</p>
+                        <h1>Student Management</h1>
+                        <p class="muted">Register and manage student information.</p>
+                    </div><button class="btn primary" id="newStudent">＋ Add Student</button>
+                </div>
+                <section class="card" id="formCard">
+                    <div class="card-head">
+                        <div>
+                            <h2 id="formTitle">Register New Student</h2>
+                            <p>Fields marked with * are required.</p>
+                        </div><span class="tag">STUDENT FORM</span>
+                    </div>
+                    <form id="form"><input id="editId" type="hidden">
+                        <div class="form-grid">
+                            <label>Full Name *<input id="name" required maxlength="80"
+                                    placeholder="Enter student's full name"></label><label>Roll Number *<input id="roll"
+                                    required maxlength="30" placeholder="e.g. BCA2026-01"></label>
+                            <label>Course *<select id="course" required>
+                                    <option value="">Select course</option>
+                                    <option>BCA</option>
+                                    <option>BBA</option>
+                                    <option>BA</option>
+                                    <option>B.Com</option>
+                                    <option>B.Sc</option>
+                                    <option>B.Voc</option>
+                                    <option>Other</option>
+                                </select></label><label>Marks (out of 100) *<input id="marks" type="number" min="0"
+                                    max="100" step=".01" required placeholder="Enter marks"></label><label
+                                class="full">Email Address<input id="email" type="email" maxlength="100"
+                                    placeholder="student@sdclgamb.com"></label>
+                        </div>
+                        <div class="actions"><button class="btn primary" id="submit" type="submit">Save
+                                Student</button><button class="btn secondary hidden" id="cancel"
+                                type="button">Cancel</button><button class="btn ghost" type="reset" id="clear">Clear
+                                Form</button></div>
+                        <p id="message" class="message"></p>
+                    </form>
+                </section>
+                <section class="card">
+                    <div class="card-head">
+                        <div>
+                            <h2>All Students</h2>
+                            <p>Search, update or remove a student record.</p>
+                        </div><input id="search" class="search" placeholder="Search name, roll or course">
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Student</th>
+                                    <th>Roll Number</th>
+                                    <th>Course</th>
+                                    <th>Marks</th>
+                                    <th>Percentage</th>
+                                    <th>Email</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="studentRows">
+                                <tr>
+                                    <td colspan="7" class="empty">No student records yet.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table-foot"><span id="recordCount">0 records</span><button class="btn secondary"
+                            id="export">Export CSV</button></div>
+                </section>
+            </section>
+            <section class="page" id="page-attendance">
+                <div class="title-row">
+                    <div>
+                        <p class="eyebrow">DAILY RECORDS</p>
+                        <h1>Attendance Management</h1>
+                        <p class="muted">Mark attendance for registered students.</p>
+                    </div><label class="date-field">Attendance Date<input type="date" id="attDate"></label>
+                </div>
+                <section class="card">
+                    <div class="card-head">
+                        <div>
+                            <h2>Daily Attendance</h2>
+                            <p>Select Present or Absent, then save attendance.</p>
+                        </div><button class="btn primary" id="saveAtt">Save Attendance</button>
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Student</th>
+                                    <th>Roll Number</th>
+                                    <th>Course</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="attRows"></tbody>
+                        </table>
+                    </div>
+                    <p class="message" id="attMsg"></p>
+                </section>
+                <div class="stats three">
+                    <article><span>Present</span><strong id="present">0</strong></article>
+                    <article><span>Absent</span><strong id="absent">0</strong></article>
+                    <article><span>Attendance Rate</span><strong id="rate">—</strong></article>
+                </div>
+            </section>
+            <section class="page" id="page-marks">
+                <div class="title-row">
+                    <div>
+                        <p class="eyebrow">ACADEMIC PERFORMANCE</p>
+                        <h1>Marks & Results</h1>
+                        <p class="muted">View marks and percentage for registered students.</p>
+                    </div><button class="btn secondary" id="exportResults">Export Results CSV</button>
+                </div>
+                <div class="stats three">
+                    <article><span>Students with marks</span><strong id="marksCount">0</strong></article>
+                    <article><span>Class Average</span><strong id="marksAvg">—</strong></article>
+                    <article><span>Passing (40%+)</span><strong id="passCount">0</strong></article>
+                </div>
+                <section class="card">
+                    <div class="card-head">
+                        <div>
+                            <h2>Student Results</h2>
+                            <p>Demo rule: 40 marks out of 100 is treated as passing.</p>
+                        </div><input id="marksSearch" class="search" placeholder="Search results">
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Student</th>
+                                    <th>Roll Number</th>
+                                    <th>Course</th>
+                                    <th>Marks / 100</th>
+                                    <th>Percentage</th>
+                                    <th>Result</th>
+                                </tr>
+                            </thead>
+                            <tbody id="marksRows"></tbody>
+                        </table>
+                    </div>
+                </section>
+            </section>
+        </main>
+    </div>
+    <script src="script12.js"></script>
+</body>
+
+</html>
